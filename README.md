@@ -66,7 +66,7 @@ Copy code
 
 ---
 
-## ▶ How to Run the Application
+##  How to Run the Application
 
 ### Prerequisites
 - Node.js (LTS version recommended)
@@ -75,7 +75,6 @@ Copy code
 - API Gateway available on port `18080`
 
 ### Steps
-```bash
 npm install
 ng serve
 Open browser:

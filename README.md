@@ -57,10 +57,7 @@ This project is developed for **academic purposes** and demonstrates real-world 
 
 1. User enters **From** and **To** locations
 2. Angular sends request to API Gateway:
-GET http://localhost:18080/api/flights?from=BLR&to=DEL
-
-yaml
-Copy code
+        GET http://localhost:18080/api/flights?from=BLR&to=DEL
 3. API Gateway routes request to Flight Service
 4. Flight data is returned and displayed in the UI
 
@@ -92,7 +89,10 @@ json
   "totalSeats": 180,
   "availableSeats": 180
 }
- Current Status
+
+
+Current Status
+
 ✔ Signup and Login working
 
 ✔ JWT authentication implemented
@@ -103,7 +103,8 @@ json
 
 ✔ UI correctly displays flight data
 
- Future Enhancements
+Future Enhancements :
+
 Flight booking functionality
 
 Seat selection
@@ -114,7 +115,7 @@ Admin flight management
 
 Enhanced UI and animations
 
- Author
+Author :
 Sravanthi Gurram
 Computer Science Engineering
 Flight Booking Microservices Project

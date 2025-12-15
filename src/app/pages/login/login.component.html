@@ -1,0 +1,37 @@
+<div class="auth-hero">
+  <div class="auth-card">
+    <h1>Welcome Back ✈</h1>
+    <p class="subtitle">Login to continue your journey</p>
+
+    <form (ngSubmit)="login()" #form="ngForm">
+      <div class="field">
+        <label>Username</label>
+        <input
+          type="text"
+          name="username"
+          [(ngModel)]="username"
+          placeholder="Enter username"
+          required
+        />
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Enter password"
+          required
+        />
+      </div>
+
+      <button class="primary-btn" type="submit">Login</button>
+    </form>
+
+    <div class="link">
+      Don’t have an account?
+      <a routerLink="/signup">Create one</a>
+    </div>
+  </div>
+</div>

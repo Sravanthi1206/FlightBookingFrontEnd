@@ -1,0 +1,38 @@
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+mat-toolbar {
+  background: white !important;
+  color: #1f2937;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.logo {
+  font-weight: 600;
+  color: #2563eb;
+}
+
+button[mat-button] {
+  color: #2563eb;
+}
+
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+:host {
+  display: block;
+  height: 100vh;
+}
+
+/* Navbar already takes some height */
+.page {
+  height: calc(100vh - 64px); /* toolbar height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

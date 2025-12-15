@@ -1,0 +1,18 @@
+@import '../login/login.component.css';
+
+.error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+.mat-mdc-snack-bar-container {
+  background: #ffffff !important;
+  color: #1f2937 !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.mat-mdc-button {
+  color: #2563eb !important;
+}

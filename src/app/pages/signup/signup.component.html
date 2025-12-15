@@ -1,0 +1,60 @@
+<div class="auth-hero">
+  <div class="auth-card">
+
+    <h1>Create Account ✨</h1>
+    <p class="subtitle">Start booking flights</p>
+
+    <form #form="ngForm" (ngSubmit)="signup(form)" novalidate>
+
+      <!-- Username -->
+      <div class="field">
+        <label>Username</label>
+        <input
+          type="text"
+          name="username"
+          [(ngModel)]="username"
+          required
+          minlength="4"
+          #usernameRef="ngModel"
+          placeholder="Enter username"
+        />
+
+        <small class="error" *ngIf="usernameRef.invalid && usernameRef.touched">
+          Username must be at least 4 characters
+        </small>
+      </div>
+
+      <!-- Password -->
+      <div class="field">
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          minlength="6"
+          #passwordRef="ngModel"
+          placeholder="Enter password"
+        />
+
+        <small class="error" *ngIf="passwordRef.invalid && passwordRef.touched">
+          Password must be at least 6 characters
+        </small>
+      </div>
+
+      <button
+        class="primary-btn"
+        type="submit"
+        [disabled]="form.invalid || loading">
+        {{ loading ? 'Creating...' : 'Create Account' }}
+      </button>
+
+    </form>
+
+    <div class="link">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </div>
+
+  </div>
+</div>

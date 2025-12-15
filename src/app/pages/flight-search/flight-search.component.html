@@ -1,0 +1,47 @@
+<div class="search-container">
+  <h2>Search Flights ✈️</h2>
+
+  <div class="search-form">
+    <input
+      type="text"
+      placeholder="From (BLR)"
+      [(ngModel)]="from"
+    />
+
+    <input
+      type="text"
+      placeholder="To (DEL)"
+      [(ngModel)]="to"
+    />
+
+    <button type="button" (click)="search()">Search</button>
+  </div>
+
+  <p *ngIf="loading">Loading flights...</p>
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <table *ngIf="flights.length > 0">
+    <thead>
+      <tr>
+        <th>Flight ID</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Total Seats</th>
+        <th>Available Seats</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let f of flights">
+        <td>{{ f.id }}</td>
+        <td>{{ f.fromPlace }}</td>
+        <td>{{ f.toPlace }}</td>
+        <td>{{ f.totalSeats }}</td>
+        <td>{{ f.availableSeats }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="!loading && flights.length === 0">
+    No flights found.
+  </p>
+</div>

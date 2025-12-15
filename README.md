@@ -38,27 +38,7 @@ This project is developed for **academic purposes** and demonstrates real-world 
 
 ##  Project Structure
 
-flight-booking-ui/
-│
-├── src/app/
-│ ├── pages/
-│ │ ├── login/
-│ │ ├── signup/
-│ │ └── flight-search/
-│ │
-│ ├── services/
-│ │ ├── auth.service.ts
-│ │ └── flight.service.ts
-│ │
-│ ├── interceptors/
-│ │ └── auth.interceptor.ts
-│ │
-│ ├── app.routes.ts
-│ └── app.component.*
-│
-├── angular.json
-├── package.json
-└── README.md
+![](image.png)
 
 
 ---

@@ -74,13 +74,11 @@ This project is developed for **academic purposes** and demonstrates real-world 
 ### Steps
 npm install
 ng serve
-Open browser:
 
-arduino
-Copy code
+Open browser:
 http://localhost:4200
- Sample API Response
-json
+
+Sample API Response json :
 
 {
   "id": "FL-123",

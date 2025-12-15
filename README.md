@@ -1,59 +1,142 @@
-# FlightBookingUi
+#  Flight Booking Application – Angular Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+This project is the **Angular frontend** for a Flight Booking System built using a **microservices architecture**.  
+It communicates with a **Spring Boot backend** through an **API Gateway** and uses **JWT-based authentication**.
 
-## Development server
+This project is developed for **academic purposes** and demonstrates real-world full-stack integration.
 
-To start a local development server, run:
+---
 
+##  Features
+
+- User Signup and Login
+- JWT-based Authentication
+- Secure API communication via API Gateway
+- Flight Search (From → To)
+- Clean and simple UI (professor-friendly)
+- Modular Angular architecture
+
+---
+
+##  Tech Stack
+
+### Frontend
+- Angular
+- TypeScript
+- HTML5 & CSS3
+- Angular Forms
+- Angular HTTP Client
+
+### Backend (separate services)
+- Spring Boot
+- Spring Cloud Gateway
+- Eureka Service Discovery
+- JWT Authentication
+- Docker
+
+---
+
+##  Project Structure
+
+flight-booking-ui/
+│
+├── src/app/
+│ ├── pages/
+│ │ ├── login/
+│ │ ├── signup/
+│ │ └── flight-search/
+│ │
+│ ├── services/
+│ │ ├── auth.service.ts
+│ │ └── flight.service.ts
+│ │
+│ ├── interceptors/
+│ │ └── auth.interceptor.ts
+│ │
+│ ├── app.routes.ts
+│ └── app.component.*
+│
+├── angular.json
+├── package.json
+└── README.md
+
+
+
+---
+
+##  Authentication Flow
+
+1. User signs up or logs in
+2. Backend returns a JWT token
+3. Token is stored in `localStorage`
+4. Angular HTTP interceptor attaches the token to secured requests
+5. API Gateway validates the token before forwarding requests
+
+---
+
+##  Flight Search Flow
+
+1. User enters **From** and **To** locations
+2. Angular sends request to API Gateway:
+GET http://localhost:18080/api/flights?from=BLR&to=DEL
+
+yaml
+Copy code
+3. API Gateway routes request to Flight Service
+4. Flight data is returned and displayed in the UI
+
+---
+
+## ▶ How to Run the Application
+
+### Prerequisites
+- Node.js (LTS version recommended)
+- Angular CLI
+- Backend services running
+- API Gateway available on port `18080`
+
+### Steps
 ```bash
+npm install
 ng serve
-```
+Open browser:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+arduino
+Copy code
+http://localhost:4200
+ Sample API Response
+json
 
-## Code scaffolding
+{
+  "id": "FL-123",
+  "fromPlace": "BLR",
+  "toPlace": "DEL",
+  "totalSeats": 180,
+  "availableSeats": 180
+}
+ Current Status
+✔ Signup and Login working
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+✔ JWT authentication implemented
 
-```bash
-ng generate component component-name
-```
+✔ Flight search integrated with backend
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+✔ CORS handled via API Gateway
 
-```bash
-ng generate --help
-```
+✔ UI correctly displays flight data
 
-## Building
+ Future Enhancements
+Flight booking functionality
 
-To build the project run:
+Seat selection
 
-```bash
-ng build
-```
+Booking history
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Admin flight management
 
-## Running unit tests
+Enhanced UI and animations
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+ Author
+Sravanthi Gurram
+Computer Science Engineering
+Flight Booking Microservices Project

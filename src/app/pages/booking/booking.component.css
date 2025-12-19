@@ -1,0 +1,34 @@
+.booking-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f9fafb;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  width: 360px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 12px 0;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}

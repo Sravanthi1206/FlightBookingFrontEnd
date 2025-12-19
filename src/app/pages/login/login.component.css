@@ -1,31 +1,42 @@
-/* Page background */
 :host {
   display: block;
   min-height: 100vh;
-  background: #f4f7fb;
 }
 
-/* Center container */
+/* layout container – background comes from styles.css */
 .auth-hero {
   width: 100%;
-  min-height: calc(100vh - 64px);
+  min-height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding-top: 100px;
+  position: relative;
 }
 
-/* Card */
+/* overlay layer (background already applied globally) */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+
+/* card */
 .auth-card {
+  position: relative;
+  z-index: 1;
+
   width: 420px;
   padding: 40px;
-  background: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  background: #ffffff;              /* IMPORTANT */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
   color: #1f2937;
 }
 
-/* Headings */
+/* headings */
 .auth-card h1 {
   font-size: 28px;
   margin-bottom: 6px;
@@ -38,7 +49,7 @@
   margin-bottom: 26px;
 }
 
-/* Form fields */
+/* form fields */
 .field {
   margin-bottom: 20px;
 }
@@ -66,7 +77,7 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
-/* Button */
+/* button */
 .primary-btn {
   width: 100%;
   padding: 14px;
@@ -79,7 +90,12 @@
   cursor: pointer;
 }
 
-/* Footer link */
+.primary-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* footer link */
 .link {
   margin-top: 18px;
   text-align: center;

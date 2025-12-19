@@ -1,0 +1,33 @@
+<div class="booking-container">
+  <div class="card">
+    <h2>Book Flight</h2>
+
+    <p><strong>Flight ID:</strong> {{ flightId }}</p>
+
+    <form (ngSubmit)="submitBooking()">
+      <input
+        type="email"
+        placeholder="Your Email"
+        [(ngModel)]="userEmail"
+        name="email"
+        required
+      />
+
+      <input
+        type="number"
+        min="1"
+        placeholder="Seats"
+        [(ngModel)]="seats"
+        name="seats"
+        required
+      />
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Booking...' : 'Confirm Booking' }}
+      </button>
+    </form>
+
+    <p class="success" *ngIf="success">{{ success }}</p>
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </div>
+</div>

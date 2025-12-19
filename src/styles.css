@@ -1,6 +1,41 @@
 html, body {
   height: 100%;
   margin: 0;
-  background: #f4f7fb;
   font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+/* ===== AUTH PAGE BACKGROUND ===== */
+.auth-hero {
+  min-height: 100vh;
+  width: 100%;
+
+  background-image: url('/images/flight-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* overlay */
+.auth-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* card */
+.auth-card {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }

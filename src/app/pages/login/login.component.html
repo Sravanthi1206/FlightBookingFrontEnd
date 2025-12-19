@@ -1,9 +1,14 @@
 <div class="auth-hero">
+
+  <!-- background overlay -->
+  <div class="overlay"></div>
+
   <div class="auth-card">
     <h1>Welcome Back ✈</h1>
     <p class="subtitle">Login to continue your journey</p>
 
     <form (ngSubmit)="login()" #form="ngForm">
+
       <div class="field">
         <label>Username</label>
         <input
@@ -26,7 +31,10 @@
         />
       </div>
 
-      <button class="primary-btn" type="submit">Login</button>
+      <button class="primary-btn" type="submit">
+        Login
+      </button>
+
     </form>
 
     <div class="link">
@@ -34,4 +42,5 @@
       <a routerLink="/signup">Create one</a>
     </div>
   </div>
+
 </div>

@@ -22,7 +22,8 @@ setToken(token: string) {
 }
 
   signup(data: { username: string; password: string }) {
-    return this.http.post(`${this.baseUrl}/signup`, data);
+    return this.http.post(`${this.baseUrl}/signup`,  data,
+    { responseType: 'text' });
   }
 
 

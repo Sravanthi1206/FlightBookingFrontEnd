@@ -42,8 +42,8 @@ export class LoginComponent {
 
     this.auth.login(this.username, this.password).subscribe({
       next: (res: any) => {
-        this.auth.setToken(res.token);   // ✅ correct method
-        this.router.navigate(['/flights']); // ✅ existing route
+        this.auth.setToken(res.token);
+        this.router.navigate(['/flights']); 
       },
       error: () => {
         this.error = 'Invalid username or password';

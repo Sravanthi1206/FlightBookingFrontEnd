@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlightService } from '../../services/flight.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flight-search',
@@ -11,24 +12,22 @@ import { FlightService } from '../../services/flight.service';
   styleUrls: ['./flight-search.component.css']
 })
 export class FlightSearchComponent {
-
   from = '';
   to = '';
   flights: any[] = [];
   loading = false;
   error: string | null = null;
-
-  constructor(private flightService: FlightService) {}
-
+  constructor(
+    private flightService: FlightService,
+    private router: Router
+  ) {}
   search() {
     if (!this.from || !this.to) {
       this.error = 'Please enter both From and To';
       return;
     }
-
     this.loading = true;
     this.error = null;
-
     this.flightService.searchFlights(this.from, this.to).subscribe({
       next: (data) => {
         this.flights = data;
@@ -40,5 +39,8 @@ export class FlightSearchComponent {
         this.loading = false;
       }
     });
+  }
+  bookFlight(flightId: string) {
+    this.router.navigate(['/book', flightId]);
   }
 }

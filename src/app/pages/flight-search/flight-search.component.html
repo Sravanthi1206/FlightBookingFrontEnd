@@ -31,12 +31,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let f of flights">
-        <td>{{ f.id }}</td>
-        <td>{{ f.fromPlace }}</td>
-        <td>{{ f.toPlace }}</td>
-        <td>{{ f.totalSeats }}</td>
-        <td>{{ f.availableSeats }}</td>
+      <tr *ngFor="let flight of flights">
+        <td>{{ flight.id }}</td>
+        <td>{{ flight.fromPlace }}</td>
+        <td>{{ flight.toPlace }}</td>
+        <td>{{ flight.totalSeats }}</td>
+        <td>{{ flight.availableSeats }}</td>
+        <td>
+            <button mat-raised-button color="primary" (click)="bookFlight(flight.id)">Book</button>
+        </td>
       </tr>
     </tbody>
   </table>

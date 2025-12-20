@@ -103,7 +103,7 @@ Current Status
 
 Future Enhancements :
 
-Flight booking functionality
+Flight booking functionality (includes cancel booking via POST `/api/bookings/{id}/cancel`)
 
 Seat selection
 

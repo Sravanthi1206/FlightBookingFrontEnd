@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [AppComponent, RouterTestingModule],
     }).compileComponents();
   });
 
@@ -14,16 +15,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'flight-booking-ui' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('flight-booking-ui');
-  });
-
-  it('should render title', () => {
+  it('should render toolbar logo', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, flight-booking-ui');
+    expect(compiled.querySelector('.logo')?.textContent).toContain('Flight Booking');
   });
 });

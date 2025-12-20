@@ -1,0 +1,41 @@
+<div class="profile-container">
+  <div class="card" *ngIf="user">
+    <h2>Profile</h2>
+
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+
+    <button (click)="logout()">Logout</button>
+
+    <hr />
+
+    <h3>My Bookings</h3>
+
+    <div *ngIf="loadingBookings">Loading bookings...</div>
+    <div *ngIf="bookingError" class="error">{{ bookingError }}</div>
+
+    <div *ngIf="bookings.length === 0 && !loadingBookings">No bookings found.</div>
+
+    <ul>
+      <li *ngFor="let b of bookings">
+        <div>
+          <strong>Booking ID:</strong> {{ b.id || b.bookingId }}
+        </div>
+        <div>
+          <strong>Flight:</strong> {{ b.flightId || b.flight?.flightNumber || 'N/A' }}
+        </div>
+        <div>
+          <strong>Seats:</strong> {{ b.seats }}</div>
+        <div>
+          <button (click)="cancelBooking(b.id || b.bookingId)" [disabled]="cancelling[b.id || b.bookingId]">
+            {{ cancelling[b.id || b.bookingId] ? 'Cancelling...' : 'Cancel' }}
+          </button>
+        </div>
+        <hr />
+      </li>
+    </ul>
+
+    <div *ngIf="message" class="message">{{ message }}</div>
+
+  </div>
+</div>

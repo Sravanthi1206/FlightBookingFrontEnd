@@ -31,6 +31,8 @@ export class SignupComponent {
 
   username = '';
   password = '';
+  email = '';
+  
   loading = false;
 
   constructor(private auth: AuthService, private router: Router,  private snackBar: MatSnackBar
@@ -43,7 +45,9 @@ export class SignupComponent {
 
   this.auth.signup({
     username: this.username,
-    password: this.password
+    password: this.password,
+    email: this.email
+
   }).subscribe({
     next: () => {
       this.loading = false;

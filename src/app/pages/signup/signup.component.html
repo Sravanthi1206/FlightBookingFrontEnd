@@ -47,6 +47,23 @@
         </small>
       </div>
 
+      <!-- Email -->
+      <div class="field">
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          #emailRef="ngModel"
+          placeholder="Enter email"
+        />
+
+        <small class="error" *ngIf="emailRef.invalid && emailRef.touched">
+          Please enter a valid email
+        </small>
+      </div>
+
       <button
         class="primary-btn"
         type="submit"

@@ -1,0 +1,26 @@
+.profile-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f9fafb;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  width: 320px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+}
+button:hover {
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+}

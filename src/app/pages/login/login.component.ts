@@ -30,6 +30,7 @@ export class LoginComponent {
 
   username = '';
   password = '';
+  email = '';
   error: string | null = null;
 
   constructor(
@@ -40,7 +41,7 @@ export class LoginComponent {
   login() {
     this.error = null;
 
-    this.auth.login(this.username, this.password).subscribe({
+    this.auth.login(this.username, this.password,this.email).subscribe({
       next: (res: any) => {
         this.auth.setToken(res.token);
         this.router.navigate(['/flights']); 

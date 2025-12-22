@@ -21,4 +21,14 @@ describe('FlightSearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('isPast should return true for past flights', () => {
+    const past = { departureTime: new Date(Date.now() - 3600 * 1000).toISOString() };
+    expect(component.isPast(past)).toBeTrue();
+  });
+
+  it('isPast should return false for future flights', () => {
+    const future = { departureTime: new Date(Date.now() + 3600 * 1000).toISOString() };
+    expect(component.isPast(future)).toBeFalse();
+  });
 });

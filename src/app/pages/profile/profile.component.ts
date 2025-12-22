@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService, UserInfo } from '../../services/auth.service';
 import { BookingService } from '../../services/booking.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { BookingService } from '../../services/booking.service';
 })
 export class ProfileComponent implements OnInit {
 
-  user: { username: string; role: string ; email: string } | null;
+  user: UserInfo | null;
   bookings: any[] = [];
   loadingBookings = false;
   bookingError = '';

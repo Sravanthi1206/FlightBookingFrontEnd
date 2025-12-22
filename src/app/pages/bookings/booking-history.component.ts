@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { BookingService } from '../../services/booking.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   standalone: true,
@@ -16,7 +18,7 @@ export class BookingHistoryComponent implements OnInit {
   cancelling: Record<string, boolean> = {};
   message = '';
 
-  constructor(private bookingService: BookingService) {}
+  constructor(private bookingService: BookingService, private auth: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.loadBookings();
@@ -25,7 +27,22 @@ export class BookingHistoryComponent implements OnInit {
   loadBookings() {
     this.loading = true;
     this.error = '';
-    this.bookingService.getAllBookings().subscribe({
+
+    if (!this.auth.isLoggedIn()) {
+      // if not logged in, redirect to login
+      this.loading = false;
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    const user = this.auth.getUserFromToken();
+    if (!user || !user.email) {
+      this.loading = false;
+      this.error = 'No user information available';
+      return;
+    }
+
+    this.bookingService.getUserBookings(user.email).subscribe({
       next: (data: any[]) => {
         this.bookings = data || [];
         this.loading = false;

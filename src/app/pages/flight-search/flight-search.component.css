@@ -1,44 +1,133 @@
 .search-container {
   padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 28px;
 }
 
 .search-form {
   display: flex;
   gap: 12px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 input {
-  padding: 10px;
+  padding: 10px 12px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  flex: 1;
+  min-width: 150px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.25);
 }
 
 button {
-  padding: 10px 18px;
+  padding: 10px 24px;
   background: #2563eb;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.btn-book {
+  padding: 8px 16px;
+  font-size: 12px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 th, td {
   border-bottom: 1px solid #ddd;
-  padding: 10px;
+  padding: 12px 10px;
+  text-align: left;
 }
 
 th {
   background: #f1f5f9;
-  text-align: left;
+  font-weight: 600;
+  color: #333;
+}
+
+tr:hover {
+  background: #f9fafb;
 }
 
 .error {
-  color: red;
+  color: #dc3545;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+.login-prompt {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 20px 0;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.login-prompt p {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.login-prompt .link-button {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 10px 24px;
+  background-color: white;
+  color: #667eea;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.login-prompt .link-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.login-prompt .divider {
+  margin: 0 15px;
+  font-weight: 300;
+}
+
+p {
+  margin: 16px 0;
+  color: #666;
 }

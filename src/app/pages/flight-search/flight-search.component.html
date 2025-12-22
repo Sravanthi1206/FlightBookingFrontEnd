@@ -14,11 +14,21 @@
       [(ngModel)]="to"
     />
 
+    <input type="date" [(ngModel)]="date" [min]="minDate" />
+
     <button type="button" (click)="search()">Search</button>
   </div>
 
   <p *ngIf="loading">Loading flights...</p>
   <p class="error" *ngIf="error">{{ error }}</p>
+
+  <!-- Login prompt for unauthenticated users -->
+  <div *ngIf="!isLoggedIn && flights.length === 0 && !loading && !error" class="login-prompt">
+    <p>📝 Sign in or create an account to book flights</p>
+    <a routerLink="/login" class="link-button">Login</a>
+    <span class="divider">or</span>
+    <a routerLink="/signup" class="link-button">Sign Up</a>
+  </div>
 
   <table *ngIf="flights.length > 0">
     <thead>
@@ -26,8 +36,11 @@
         <th>Flight ID</th>
         <th>From</th>
         <th>To</th>
+        <th>Date</th>
+        <th>Departure Time</th>
         <th>Total Seats</th>
         <th>Available Seats</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -35,16 +48,22 @@
         <td>{{ flight.id }}</td>
         <td>{{ flight.fromPlace }}</td>
         <td>{{ flight.toPlace }}</td>
+        <td>{{ flight.flightDate | date:'MMM dd, yyyy' }}</td>
+        <td>{{ flight.departureTime | date:'HH:mm' }}</td>
         <td>{{ flight.totalSeats }}</td>
         <td>{{ flight.availableSeats }}</td>
         <td>
-            <button mat-raised-button color="primary" (click)="bookFlight(flight.id)">Book</button>
+            <button class="btn-book" (click)="bookFlight(flight.id)" [disabled]="isPast(flight) || flight.availableSeats <= 0">
+              <span *ngIf="flight.availableSeats <= 0">Fully Booked</span>
+              <span *ngIf="flight.availableSeats > 0 && isPast(flight)">Expired</span>
+              <span *ngIf="flight.availableSeats > 0 && !isPast(flight)">Book</span>
+            </button>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <p *ngIf="!loading && flights.length === 0">
+  <p *ngIf="!loading && flights.length === 0 && !error">
     No flights found.
   </p>
 </div>

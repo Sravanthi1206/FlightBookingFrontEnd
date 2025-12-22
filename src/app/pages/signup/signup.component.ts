@@ -32,6 +32,7 @@ export class SignupComponent {
   username = '';
   password = '';
   email = '';
+  adminSecret = '';
   
   loading = false;
 
@@ -46,8 +47,8 @@ export class SignupComponent {
   this.auth.signup({
     username: this.username,
     password: this.password,
-    email: this.email
-
+    email: this.email,
+    adminSecret: this.adminSecret || undefined
   }).subscribe({
     next: () => {
       this.loading = false;

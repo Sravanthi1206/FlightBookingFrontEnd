@@ -64,6 +64,18 @@
         </small>
       </div>
 
+      <!-- Admin Secret (optional) -->
+      <div class="field">
+        <label>Admin Secret (optional)</label>
+        <input
+          type="password"
+          name="adminSecret"
+          [(ngModel)]="adminSecret"
+          placeholder="Enter admin secret to register as ADMIN"
+        />
+        <small class="hint">Leave empty to register as USER</small>
+      </div>
+
       <button
         class="primary-btn"
         type="submit"

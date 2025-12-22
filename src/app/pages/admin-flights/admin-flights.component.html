@@ -1,0 +1,104 @@
+<div class="admin-container">
+  <div class="header">
+    <h2>🔧 Admin Flight Management</h2>
+    <p class="admin-info">Welcome, Admin! Manage all flights here.</p>
+  </div>
+
+  <button class="btn-add" (click)="toggleForm()">
+    {{ showForm ? '✕ Close' : '+ Add New Flight' }}
+  </button>
+
+  <div class="form-section" *ngIf="showForm">
+    <h3>Add New Flight</h3>
+    <form (ngSubmit)="addFlight()">
+      <div class="form-group">
+        <label>Flight ID:</label>
+        <input type="text" [(ngModel)]="flightId" name="flightId" placeholder="e.g., FL001" required />
+      </div>
+
+      <div class="form-group">
+        <label>From:</label>
+        <input type="text" [(ngModel)]="fromPlace" name="fromPlace" placeholder="e.g., BLR" required />
+      </div>
+
+      <div class="form-group">
+        <label>To:</label>
+        <input type="text" [(ngModel)]="toPlace" name="toPlace" placeholder="e.g., DEL" required />
+      </div>
+
+      <div class="form-group">
+        <label>Flight Date:</label>
+        <input type="date" [(ngModel)]="flightDate" name="flightDate" required />
+      </div>
+
+      <div class="form-group">
+        <label>Departure Time:</label>
+        <input type="datetime-local" [(ngModel)]="departureTime" name="departureTime" required />
+      </div>
+
+      <div class="form-group">
+        <label>Arrival Time:</label>
+        <input type="datetime-local" [(ngModel)]="arrivalTime" name="arrivalTime" />
+      </div>
+
+      <div class="form-group">
+        <label>Cost:</label>
+        <input type="number" [(ngModel)]="price" name="price" min="1" placeholder="e.g., 2999" />
+      </div>
+
+      <div class="form-group">
+        <label>Total Seats:</label>
+        <input type="number" [(ngModel)]="totalSeats" name="totalSeats" min="1" required />
+      </div>
+
+      <div class="form-group">
+        <label>Available Seats:</label>
+        <input type="number" [(ngModel)]="availableSeats" name="availableSeats" min="0" [max]="totalSeats" required />
+      </div>
+
+      <button type="submit" [disabled]="loading" class="btn-submit">
+        {{ loading ? 'Adding...' : 'Add Flight' }}
+      </button>
+    </form>
+
+    <p class="success" *ngIf="success">{{ success }}</p>
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </div>
+
+  <div class="flights-section">
+    <h3>All Flights</h3>
+    <table *ngIf="flights.length > 0">
+      <thead>
+        <tr>
+          <th>Flight ID</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Date</th>
+          <th>Departure Time</th>
+          <th>Total Seats</th>
+          <th>Available Seats</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flight of flights">
+          <td><strong>{{ flight.id }}</strong></td>
+          <td>{{ flight.fromPlace }}</td>
+          <td>{{ flight.toPlace }}</td>
+          <td>{{ flight.flightDate | date:'MMM dd, yyyy' }}</td>
+          <td>{{ flight.departureTime | date:'HH:mm' }}</td>
+          <td>{{ flight.totalSeats }}</td>
+          <td>
+            <span [class.warning]="flight.availableSeats < 10">
+              {{ flight.availableSeats }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="flights.length === 0">No flights available.</p>
+  </div>
+
+  <p class="error" *ngIf="error && !showForm" style="text-align: center; margin-top: 20px;">
+    {{ error }}
+  </p>
+</div>

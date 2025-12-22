@@ -1,11 +1,97 @@
-<mat-toolbar>
-  <span class="logo">✈ Flight Booking</span>
-  <span class="spacer"></span>
-  <a mat-button routerLink="/login">Login</a>
-  <a mat-button routerLink="/signup">Signup</a>
-  <a mat-button routerLink="/flights">Search Flights</a>
-  <a mat-button routerLink="/booking-history">Booking History</a>
-  <a mat-button routerLink="/profile">Profile</a>
-</mat-toolbar>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <a class="navbar-brand me-2" routerLink="/">
+      <span class="logo">✈ Flight Booking</span>
+    </a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarButtonsExample"
+      aria-controls="navbarButtonsExample"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div
+      class="collapse navbar-collapse"
+      id="navbarButtonsExample"
+    >
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/flights">Search Flights</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" routerLink="/booking-history">Booking History</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin()">
+          <a class="nav-link" routerLink="/admin/flights">🔧 Admin</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+
+      <div class="d-flex align-items-center">
+        <!-- show when not logged in -->
+        <ng-container *ngIf="!isLoggedIn">
+          <button type="button" class="btn btn-link px-3 me-2" routerLink="/login">
+            Login
+          </button>
+          <button type="button" class="btn btn-primary me-3" routerLink="/signup">
+            Sign up for free
+          </button>
+        </ng-container>
+
+        <!-- show when logged in -->
+        <ng-container *ngIf="isLoggedIn">
+          <!-- booking badge -->
+          <button type="button" class="btn btn-link px-3 position-relative" (click)="goToBookings()">
+            <i class="fas fa-book"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngIf="bookingsCount > 0">
+              {{bookingsCount}}
+            </span>
+          </button>
+
+          <!-- notifications -->
+          <div class="dropdown me-2">
+            <button class="btn btn-link px-3 position-relative" type="button" id="notificationDropdown" data-mdb-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-bell"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning" *ngIf="notifications && notifications.length > 0">
+                {{notifications.length}}
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+              <li *ngFor="let n of notifications"><a class="dropdown-item" href="#">{{ n.text }}</a></li>
+              <li *ngIf="!notifications || notifications.length === 0"><a class="dropdown-item disabled" href="#">No notifications</a></li>
+            </ul>
+          </div>
+
+          <!-- avatar/menu (Angular Material) -->
+          <button mat-button [matMenuTriggerFor]="profileMenu" class="rounded-circle" aria-label="User menu" style="width: 40px; height: 40px;">
+            {{ userInitials || 'U' }}
+          </button>
+          <mat-menu #profileMenu="matMenu" xPosition="before" yPosition="below">
+            <button mat-menu-item routerLink="/profile">Profile</button>
+            <button mat-menu-item routerLink="/booking-history">Bookings</button>
+            <button mat-menu-item routerLink="/change-password">Change Password</button>
+            <button mat-menu-item *ngIf="isAdmin()" routerLink="/admin/flights">Admin Panel</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+          </mat-menu>
+        </ng-container>
+      </div>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
 
 <router-outlet></router-outlet>

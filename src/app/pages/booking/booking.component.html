@@ -3,26 +3,106 @@
     <h2>Book Flight</h2>
 
     <p><strong>Flight ID:</strong> {{ flightId }}</p>
+    <p *ngIf="flight">
+      <strong>From:</strong> {{ flight.fromPlace }} &nbsp;&nbsp;
+      <strong>To:</strong> {{ flight.toPlace }}
+    </p>
+    <p *ngIf="flight">
+      <strong>Date:</strong> {{ flight.flightDate | date:'medium' }}&nbsp;&nbsp;
+      <strong>Departure:</strong> {{ flight.departureTime | date:'medium' }}
+    </p>
 
     <form (ngSubmit)="submitBooking()">
-      <input
-        type="email"
-        placeholder="Your Email"
-        [(ngModel)]="userEmail"
-        name="email"
-        required
-      />
+      <div class="form-group">
+        <label>Your Email:</label>
+        <input
+          type="email"
+          placeholder="Your Email"
+          [(ngModel)]="userEmail"
+          name="email"
+          required
+        />
+      </div>
 
-      <input
-        type="number"
-        min="1"
-        placeholder="Seats"
-        [(ngModel)]="seats"
-        name="seats"
-        required
-      />
+      <div class="form-group">
+        <label>Number of Seats:</label>
+        <input
+          type="number"
+          min="1"
+          max="9"
+          placeholder="Seats"
+          [(ngModel)]="seats"
+          name="seats"
+          (change)="onSeatsChange()"
+          required
+        />
+      </div>
 
-      <button type="submit" [disabled]="loading">
+      <p class="error" *ngIf="isPastFlight">Cannot book past flight</p>
+
+      <div class="passengers-section">
+        <h3>Passenger Details</h3>
+        <div *ngFor="let passenger of passengers; let i = index" class="passenger-form">
+          <h4>Passenger {{ i + 1 }}</h4>
+          <div class="form-group">
+            <label>Name:</label>
+            <input
+              type="text"
+              placeholder="Full Name"
+              [(ngModel)]="passenger.name"
+              [name]="'name' + i"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Email:</label>
+            <input
+              type="email"
+              placeholder="Email Address"
+              [(ngModel)]="passenger.email"
+              [name]="'email' + i"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Phone Number:</label>
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              [(ngModel)]="passenger.phoneNumber"
+              [name]="'phone' + i"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Passport Number:</label>
+            <input
+              type="text"
+              placeholder="Passport Number"
+              [(ngModel)]="passenger.passport"
+              [name]="'passport' + i"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Age:</label>
+            <input
+              type="number"
+              min="1"
+              max="150"
+              placeholder="Age"
+              [(ngModel)]="passenger.age"
+              [name]="'age' + i"
+              required
+            />
+          </div>
+          <button type="button" (click)="removePassenger(i)" *ngIf="passengers.length > 1" class="btn-remove">
+            Remove Passenger
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loading || isPastFlight">
         {{ loading ? 'Booking...' : 'Confirm Booking' }}
       </button>
     </form>

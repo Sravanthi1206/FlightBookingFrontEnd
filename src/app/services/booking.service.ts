@@ -1,21 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export interface Passenger {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  passport: string;
+  age: number;
+}
+
+export interface BookingRequest {
+  flightId: string;
+  userEmail: string;
+  seats: number;
+  passengers?: Passenger[];
+}
+
 @Injectable({ providedIn: 'root' })
 export class BookingService {
-  private baseUrl = 'http://localhost:18080/api/bookings';
+  private baseUrl = 'http://localhost:8080/api/bookings';
   constructor(private http: HttpClient) {}
-  createBooking(data: {
-    flightId: string;
-    userEmail: string;
-    seats: number;
-  }) {
+  
+  createBooking(data: BookingRequest) {
     return this.http.post(this.baseUrl, data);
   }
 
   getUserBookings(userEmail: string) {
-    // returns an array of bookings for the given user
-    return this.http.get<any[]>(`${this.baseUrl}?userEmail=${encodeURIComponent(userEmail)}`);
+    // returns an array of bookings for the given user (backend expects 'email' query param)
+    return this.http.get<any[]>(`${this.baseUrl}?email=${encodeURIComponent(userEmail)}`);
   }
 
   getAllBookings() {
